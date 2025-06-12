@@ -25,6 +25,7 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'task2-simple-webapp' 
+          app-name: 'task2-simple-webapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C55EC29F366C47FBBB1270871EEF25DB
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C55EC29F366C47FBBB1270871EEF25DB }}
+          package: .
