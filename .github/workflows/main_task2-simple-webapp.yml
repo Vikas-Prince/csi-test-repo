@@ -1,4 +1,4 @@
-name: Deploy Node.js app to Azure Web App - task2-simple-webapp
+name: Deploy Node.js HTML App to Azure Web App - task2-simple-webapp
 
 on:
   push:
@@ -9,11 +9,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -24,13 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Zip project files
-        run: zip release.zip . -r -x '*.git*' '*.github*' 'node_modules/*'
-
-      - name: Deploy to Azure Web App
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'task2-simple-webapp'  # Replace with your actual web app name
+          app-name: 'task2-simple-webapp' 
           slot-name: 'Production'
-          package: release.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C55EC29F366C47FBBB1270871EEF25DB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C55EC29F366C47FBBB1270871EEF25DB
